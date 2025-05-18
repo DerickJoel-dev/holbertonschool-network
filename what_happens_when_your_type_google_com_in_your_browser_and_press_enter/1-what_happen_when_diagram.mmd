@@ -1,0 +1,14 @@
+graph TD
+    A[User enters https://www.google.com] --> B[DNS Resolution]
+    B --> C[Get Server IP address]
+    C --> D[Open HTTPS connection on port 443]
+    D --> E[Traffic encrypted via TLS]
+    E --> F[Pass through Firewall]
+    F --> G[Request routed by Load Balancer]
+    G --> H[Web Server]
+    H --> I[Application Server]
+    I --> J[Fetch Data from Database]
+    J --> I
+    I --> K[Generate Response]
+    K --> H
+    H --> L[Send Response to User via HTTPS]
