@@ -1,0 +1,118 @@
+
+# What Happens When You Type [https://www.google.com](https://www.google.com) in Your Browser?
+
+When you type `https://www.google.com` in your browser and press Enter, a series of complex but well-orchestrated processes occur behind the scenes to fetch and render the web page. This flow involves several networking and computing components, from DNS resolution to database queries. Here's a step-by-step breakdown of what happens:
+
+---
+
+## 1. DNS Request
+
+Your browser first needs to translate the human-readable URL (`www.google.com`) into a machine-readable IP address. This process is called DNS resolution.
+
+* The browser checks its own cache for a recent DNS record.
+* If not found, it asks the operating system, which may check its own cache.
+* Eventually, the request reaches a DNS resolver (often from your ISP).
+* The resolver queries a root server, a TLD server (for `.com`), and finally Google's authoritative DNS server.
+* The result is an IP address (e.g., `142.250.190.14`).
+
+---
+
+## 2. TCP/IP Connection
+
+With the IP address known, your browser initiates a TCP connection using the Transmission Control Protocol (TCP) over the Internet Protocol (IP).
+
+* The browser sends a SYN packet to the server.
+* The server responds with a SYN-ACK.
+* The browser replies with an ACK.
+
+This three-way handshake establishes a reliable communication channel on port 443 (for HTTPS).
+
+---
+
+## 3. Firewall
+
+Before the request reaches Google's server, it passes through firewalls.
+
+* Firewalls are security systems that inspect and filter traffic.
+* They protect internal networks from unauthorized access or malicious traffic.
+* Google's infrastructure uses advanced firewalls to filter and monitor requests.
+
+---
+
+## 4. HTTPS/SSL (TLS)
+
+Because the URL uses HTTPS, your browser and the server perform an SSL/TLS handshake.
+
+* The server provides a digital certificate issued by a Certificate Authority.
+* The browser validates the certificate to ensure authenticity.
+* A symmetric encryption key is generated for secure communication.
+
+This ensures that data exchanged is encrypted and protected from eavesdropping or tampering.
+
+---
+
+## 5. Load Balancer
+
+Once the encrypted connection is set up, your request is routed through a load balancer in Google’s data center.
+
+* Load balancers distribute incoming traffic across multiple web servers.
+* They optimize resource usage and ensure high availability.
+* This makes the system more resilient and performant.
+
+---
+
+## 6. Web Server
+
+The request reaches a web server (e.g., running Nginx or Google's own optimized web server).
+
+* Web servers handle HTTP requests and serve static content like HTML, CSS, and JS.
+* If the page is static (like a cached homepage), it is served directly.
+* Otherwise, the request is passed to an application server.
+
+---
+
+## 7. Application Server
+
+If the request requires dynamic content (like search results), it is forwarded to an application server.
+
+* The app server runs Google’s search logic.
+* It processes input (e.g., the search term) and executes business logic.
+* The server may make API calls or query databases to get relevant information.
+
+---
+
+## 8. Database
+
+The application server may query a database to retrieve data:
+
+* Google's infrastructure includes massive distributed databases.
+* These databases store indexed web data, user preferences, and much more.
+* The database returns the results to the application server.
+
+---
+
+## 9. Response and Rendering
+
+* The application server generates the dynamic content.
+* The web server compiles everything into an HTTP response.
+* The response is sent back through the load balancer, firewall, and encrypted TCP connection to your browser.
+
+Your browser then:
+
+* Decrypts the response.
+* Parses the HTML.
+* Fetches referenced CSS, JS, and images.
+* Renders the visual page you see.
+
+---
+
+## Conclusion
+
+This complex interaction between various systems happens in milliseconds. From DNS resolution to TCP handshakes, encryption, load balancing, and server processing, each component plays a vital role in delivering a secure, fast, and reliable browsing experience.
+
+Understanding this process is fundamental for any software engineer and demonstrates how layered and optimized modern web infrastructure is.
+
+---
+# Author
+
+Derick Quinones
